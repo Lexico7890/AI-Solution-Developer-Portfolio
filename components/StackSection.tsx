@@ -3,15 +3,15 @@ import React from 'react';
 
 const StackSection: React.FC = () => {
   const stackItems = [
-    { name: 'React 19', cat: 'Frontend Core', level: 98, icon: 'view_quilt' },
-    { name: 'Python', cat: 'AI & Backend', level: 95, icon: 'psychology' },
-    { name: 'LangChain', cat: 'AI Framework', level: 92, icon: 'hub' },
-    { name: 'PostgreSQL', cat: 'Database', level: 94, icon: 'database' },
-    { name: 'FastAPI', cat: 'Backend API', level: 90, icon: 'api' },
-    { name: 'Docker', cat: 'Infrastructure', level: 88, icon: 'terminal' },
-    { name: 'Redis', cat: 'Caching', level: 85, icon: 'memory' },
-    { name: 'RabbitMQ', cat: 'Messaging', level: 82, icon: 'message' },
-    { name: 'LangGraph', cat: 'AI Agents', level: 80, icon: 'account_tree' },
+    { name: 'React 19', cat: 'Frontend Core', level: 85, icon: 'view_quilt' },
+    { name: 'Python', cat: 'AI & Backend', level: 70, icon: 'psychology' },
+    { name: 'LangChain', cat: 'AI Framework', level: 60, icon: 'hub' },
+    { name: 'PostgreSQL', cat: 'Database', level: 75, icon: 'database' },
+    { name: 'FastAPI', cat: 'Backend API', level: 80, icon: 'api' },
+    { name: 'Docker', cat: 'Infrastructure', level: 85, icon: 'terminal' },
+    { name: 'Redis', cat: 'Caching', level: 50, icon: 'memory' },
+    { name: 'RabbitMQ', cat: 'Messaging', level: 50, icon: 'message' },
+    { name: 'LangGraph', cat: 'AI Agents', level: 60, icon: 'account_tree' },
   ];
 
   return (

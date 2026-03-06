@@ -7,7 +7,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onInitialize }) => {
   const [text, setText] = useState('');
-  const fullText = "Software Developer & Machine Learning Engineer specializing in AI systems, SaaS architecture, and data-driven solutions.";
+  const fullText = "Software Developer & AI Engineer specializing in AI systems, SaaS architecture, and data-driven solutions.";
 
   useEffect(() => {
     let i = 0;
@@ -22,10 +22,6 @@ const Hero: React.FC<HeroProps> = ({ onInitialize }) => {
   const handleDownload = () => {
     const cvContent = `
 OSCAR ALEXANDER CASAS ALFONSO
-Bogota D.C., Colombia
-Telephone: +573026826521
-Email: oscaralexander2626@gmail.com
-LinkedIn: linkedin.com/in/oscarcasas26 | GitHub: https://github.com/Lexico7890
 
 SOFTWARE DEVELOPER | MACHINE LEARNING ENGINEER | AI ENGINEER
 
@@ -53,16 +49,16 @@ Main Technologies: Javascript, ReactJS, Entity Framework, SQL Server, Angular, D
 
 PROJECTS
 
-Inventory SystemTrace - Workshop Management with AI
-github.com/Lexico7890/Trazea
+DevMetrics - Analytics Platform para Developers
+github.com/Lexico7890/devmetrics
 ● I designed an analytics platform for developers that synchronizes data from GitHub (commits, pull requests, repositories) and generates productivity metrics, development patterns and performance through interactive dashboards with real-time visualizations.
 ● I designed a service-oriented architecture with Turborepo monorepo orchestrating 3 independent services (Next.js SSR, NestJS API, BullMQ Workers) communicating via RabbitMQ for asynchronous events and Redis for multi-layer caching and job queues.
 ● I implemented a PostgreSQL multi-schema database system using bounded contexts (auth, analytics, jobs) with Prisma ORM, preparing the architecture for migration to microservices without data refactoring.
 ● I configured a complete infrastructure with Docker Compose (9 services), Nginx as a unified reverse proxy with rate limiting and security headers, and a background processing pipeline for incremental synchronization of GitHub API data.
 Main Technologies: TypeScript, Next.js (App Router/SSR/RSC), NestJS, PostgreSQL, Prisma, Redis, RabbitMQ, BullMQ, Docker Compose, Nginx, Turborepo, Tailwind CSS.
 
-DevMetrics - Analytics Platform para Developers
-github.com/Lexico7890/devmetrics
+Inventory SystemTrace - Workshop Management with AI
+github.com/Lexico7890/Trazea
 ● I designed a centralized inventory management system for electric mobility workshops, allowing real-time tracking of spare parts, usage reasoning, and operational records across multiple locations.
 ● I implemented an Agentic Workflow using voice interfaces to orchestrate multiple AI agents, allowing users to execute complex inventory commands and retrieve data using natural language.
 ● I integrated Multimodal AI (Google Gemini API) to process image inputs, automating spare parts identification and streamlining the registration process.
@@ -129,8 +125,8 @@ Technologist in Analysis and Development of Information Systems, Analysis of Com
 
           <div className="space-y-2">
             <h1 className="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter text-white uppercase italic">
-              <span className="block text-glow">ML Engineer</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary glitch-text">AI Developer</span>
+              <span className="block text-glow">AI Solutions</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary glitch-text">Developer</span>
             </h1>
           </div>
 

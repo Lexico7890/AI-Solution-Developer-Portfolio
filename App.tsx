@@ -15,6 +15,56 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
+  const [formData, setFormData] = useState({ identifier: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState('');
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError('');
+    
+    if (!formData.identifier.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setFormError('ALL_FIELDS_REQUIRED');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setFormError('INVALID_EMAIL_FORMAT');
+      return;
+    }
+
+    setFormStatus('loading');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.error) {
+        throw new Error(data.error?.message || data.error || 'Transmission failed');
+      }
+
+      setFormStatus('success');
+      setFormData({ identifier: '', email: '', message: '' });
+      
+      // Reset after 5 seconds
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 5000);
+    } catch (err: any) {
+      console.error('Error sending message:', err);
+      setFormStatus('error');
+      setFormError(err.message || 'TRANSMISSION_FAILED');
+    }
+  };
+
   const handleSectionChange = (section: Section) => {
     if (section === currentSection) return;
     setIsChanging(true);
@@ -54,30 +104,61 @@ const App: React.FC = () => {
               <div className="absolute -top-1 -left-1 size-3 border-t-2 border-l-2 border-secondary"></div>
               <div className="absolute -bottom-1 -right-1 size-3 border-b-2 border-r-2 border-secondary"></div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
-                <input 
-                  type="text" 
-                  placeholder="IDENTIFIER_NAME" 
-                  className="bg-background-dark border-none p-6 text-white font-mono placeholder:text-gray-700 focus:ring-1 focus:ring-secondary outline-none uppercase" 
-                />
-                <input 
-                  type="email" 
-                  placeholder="COMMS_FREQUENCY_EMAIL" 
-                  className="bg-background-dark border-none p-6 text-white font-mono placeholder:text-gray-700 focus:ring-1 focus:ring-secondary outline-none uppercase" 
-                />
-                <textarea 
-                  placeholder="TRANSMISSION_CONTENT..." 
-                  rows={4} 
-                  className="md:col-span-2 bg-background-dark border-none p-6 text-white font-mono placeholder:text-gray-700 focus:ring-1 focus:ring-secondary outline-none uppercase"
-                ></textarea>
-              </div>
+              <form onSubmit={handleContactSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
+                  <input 
+                    type="text" 
+                    placeholder="IDENTIFIER_NAME" 
+                    value={formData.identifier}
+                    onChange={(e) => setFormData(prev => ({ ...prev, identifier: e.target.value }))}
+                    disabled={formStatus === 'loading'}
+                    className="bg-background-dark border-none p-6 text-white font-mono placeholder:text-gray-700 focus:ring-1 focus:ring-secondary outline-none uppercase disabled:opacity-50" 
+                  />
+                  <input 
+                    type="email" 
+                    placeholder="COMMS_FREQUENCY_EMAIL" 
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    disabled={formStatus === 'loading'}
+                    className="bg-background-dark border-none p-6 text-white font-mono placeholder:text-gray-700 focus:ring-1 focus:ring-secondary outline-none uppercase disabled:opacity-50" 
+                  />
+                  <textarea 
+                    placeholder="TRANSMISSION_CONTENT..." 
+                    rows={4} 
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    disabled={formStatus === 'loading'}
+                    className="md:col-span-2 bg-background-dark border-none p-6 text-white font-mono placeholder:text-gray-700 focus:ring-1 focus:ring-secondary outline-none uppercase resize-none disabled:opacity-50"
+                  ></textarea>
+                </div>
 
-              <button className="w-full h-20 bg-secondary/10 border-t border-white/5 text-secondary font-black uppercase tracking-[0.5em] hover:bg-secondary hover:text-black transition-all group overflow-hidden">
-                <span className="relative z-10 flex items-center justify-center gap-4">
-                  Transmit Signal
-                  <span className="material-symbols-outlined group-hover:translate-x-12 group-hover:-translate-y-12 transition-transform duration-500">send</span>
-                </span>
-              </button>
+                {formError && (
+                  <div className="p-4 bg-red-500/10 border-t border-red-500/50 text-red-500 font-mono text-sm uppercase flex items-center gap-2">
+                    <span className="material-symbols-outlined text-base">error</span>
+                    ERR: {formError}
+                  </div>
+                )}
+
+                {formStatus === 'success' && (
+                  <div className="p-4 bg-green-500/10 border-t border-green-500/50 text-green-500 font-mono text-sm uppercase flex items-center gap-2">
+                    <span className="material-symbols-outlined text-base">check_circle</span>
+                    TRANSMISSION_SUCCESSFUL: DATA_RECEIVED
+                  </div>
+                )}
+
+                <button 
+                  type="submit"
+                  disabled={formStatus === 'loading' || formStatus === 'success'}
+                  className="w-full h-20 bg-secondary/10 border-t border-white/5 text-secondary font-black uppercase tracking-[0.5em] hover:bg-secondary hover:text-black transition-all group overflow-hidden disabled:opacity-50 disabled:hover:bg-secondary/10 disabled:hover:text-secondary disabled:cursor-not-allowed"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-4">
+                    {formStatus === 'loading' ? 'TRANSMITTING...' : formStatus === 'success' ? 'LINK_ESTABLISHED' : 'Transmit Signal'}
+                    <span className={`material-symbols-outlined transition-transform duration-500 ${formStatus === 'loading' ? 'animate-pulse' : formStatus === 'success' ? '' : 'group-hover:translate-x-12 group-hover:-translate-y-12'}`}>
+                      {formStatus === 'success' ? 'check' : 'send'}
+                    </span>
+                  </span>
+                </button>
+              </form>
             </div>
 
             <div className="mt-16 flex gap-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
