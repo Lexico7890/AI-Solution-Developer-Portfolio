@@ -1,0 +1,8 @@
+{
+  "name": "Oscar Alexander - AI Engineer Portfolio",
+  "description": "Portfolio of Oscar Alexander Casas Alfonso, Software Developer and AI Engineer specializing in SaaS and Machine Learning solutions.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
