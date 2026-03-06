@@ -6,7 +6,7 @@ const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 export const chatWithArchitect = async (message: string) => {
   const ai = getAI();
   const chat = ai.chats.create({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-2.5-flash',
     config: {
       systemInstruction: `You are the "AI Assistant" for Oscar Alexander Casas Alfonso's portfolio. 
             Oscar is a Software Developer and AI Engineer with expertise in:

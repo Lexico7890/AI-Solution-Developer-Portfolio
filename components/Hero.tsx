@@ -57,7 +57,7 @@ github.com/Lexico7890/devmetrics
 ● I configured a complete infrastructure with Docker Compose (9 services), Nginx as a unified reverse proxy with rate limiting and security headers, and a background processing pipeline for incremental synchronization of GitHub API data.
 Main Technologies: TypeScript, Next.js (App Router/SSR/RSC), NestJS, PostgreSQL, Prisma, Redis, RabbitMQ, BullMQ, Docker Compose, Nginx, Turborepo, Tailwind CSS.
 
-Inventory SystemTrace - Workshop Management with AI
+Trazea - Workshop Management with AI
 github.com/Lexico7890/Trazea
 ● I designed a centralized inventory management system for electric mobility workshops, allowing real-time tracking of spare parts, usage reasoning, and operational records across multiple locations.
 ● I implemented an Agentic Workflow using voice interfaces to orchestrate multiple AI agents, allowing users to execute complex inventory commands and retrieve data using natural language.
