@@ -184,7 +184,7 @@ Technologist in Analysis and Development of Information Systems, Analysis of Com
             {/* Central Visual */}
             <div className="absolute inset-[15%] rounded-full overflow-hidden border-2 border-primary shadow-[0_0_80px_rgba(0,255,255,0.15)] group cursor-crosshair">
               <img 
-                src="ocdev_logo.png" 
+                src="https://xeypfdmbpkzkkfmthqwb.supabase.co/storage/v1/object/sign/ocdev/ocdev_logo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lZGU2NzgyYi0wMjIxLTRhNmUtYTJmMC1kZTAwOGFmZjAxZjYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJvY2Rldi9vY2Rldl9sb2dvLnBuZyIsImlhdCI6MTc3MjgwNzA5NywiZXhwIjoxODA0MzQzMDk3fQ.VJzdSJ-ijk2g5Xk3M9C4AGkdwiCUmYh3wGOjRV6QqxE" 
                 alt="Cyber Visual" 
                 className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
               />
