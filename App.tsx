@@ -8,6 +8,7 @@ import ChatBot from './components/ChatBot';
 import ProjectTerminal from './components/ProjectTerminal';
 import { Section } from './types';
 import { PROJECTS } from './constants';
+import { Analytics } from '@vercel/analytics/react';
 
 const App: React.FC = () => {
   const [currentSection, setSection] = useState<Section>('home');
@@ -277,6 +278,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 };
